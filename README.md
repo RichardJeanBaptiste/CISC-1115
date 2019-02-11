@@ -1,2 +1,2 @@
 # CISC-1115
-comp sci intro to java
+Brooklyn College - Intro to Java
