@@ -1,5 +1,3 @@
-package assignment2;
-
 import java.util.*;
 
 public class assignment2 {
