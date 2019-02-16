@@ -1,3 +1,5 @@
+package assignment2;
+
 import java.util.*;
 
 public class assignment2 {
@@ -95,7 +97,7 @@ public class assignment2 {
 			 * bestAvg = winAverage
 			 */
 			
-			if(winAverage > bestAvg)
+			if(winAverage > bestAvg && winAverage != 1)
 			{
 				bestAvg = winAverage;
 				bestAvgId = teamId;
