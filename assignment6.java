@@ -9,6 +9,13 @@ public class assignment6
 {
     public static void main(String[] args)throws IOException
     {
+    	/*
+    	 * This program prints two sets of arrays to an output file 
+    	 * it gets the average of the arrays and finds which values are closest to the average
+    	 */
+    	
+    	
+    	
         int size;
         double[] numbers = {};
         PrintWriter outFile = new PrintWriter("output.txt");
@@ -29,22 +36,22 @@ public class assignment6
         
         double avg = findAverage(size, b);
         outFile.printf("\n\navg = %.2f\n", avg);
+        outFile.printf(highAndLow(b, avg));
         
         
         double[] second = Arrays.copyOf(howFarAway(size, avg, b), size);
         
-        outFile.println("------------------------------------\nHere is the second Array\n");
+        outFile.println("\n------------------------------------\nHere is the second Array\n");
         outFile.println(printArray(size, second));
         
         double avg2 = findAverage(size, second);
-        outFile.printf("\n\navg = %.2f\n", avg2);
         
-        
-        
+        outFile.println("\navg = " + avg2);
+        outFile.printf(highAndLow(second, avg2));
+       
         outFile.close();
         in.close();
-        
-        
+           
     }
     
     public static double[] readData(int n , double[] numbers)throws IOException
@@ -70,14 +77,14 @@ public class assignment6
         return numbers;
 
     }
-
+    // print a given array making 5 columns each 
     public static String printArray(int q, double[] numb)
     {
     	
         int index = -1;
         String s = "";
         
-
+        
         for(int i = 0; i < q; i++)
         {
             index++;
@@ -98,13 +105,15 @@ public class assignment6
 
         	return s;
     }
-    
+    // find the average of an array of numbers
     public static double findAverage(int k, double[] p)
     {
-    	
-    	/* get the sum of k numbers 
+    	/*
+    	 * loop through the array k times
+    	 * add all the values to sum
     	 * divide k
     	 */
+    	
     	
     	double sum = 0;
     	double average;
@@ -116,8 +125,6 @@ public class assignment6
     	}
     	
     	average = sum / k;
-    	
-    	
     	
     	return average;
     }
@@ -134,12 +141,46 @@ public class assignment6
     	
     	for(int i = 0; i < r.length; i++)
     	{
-    		//System.out.println((r[i] - avg));
     		s[i] = r[i] - avg ;
     	}
     	
     	    	
     	return s;
     }
+    // get the values closest and farthest from the average in an array
+    public static String highAndLow(double[] x, double avg)
+    {
+    	
+    	double high = 0.0;
+    	double low = Double.MAX_VALUE;
+    	String s = "";
+    	double dist;
+    	double highVal = 0;
+    	double lowVal = 0;
+    	// loop through the array
+    	for(int i = 0; i < x.length; i++)
+    	{
+    		// get the distance between the number and the average
+    		dist = Math.abs(x[i] - avg);
+    		
+    		
+    		if(dist > high)
+    		{
+    			high = dist;
+    			highVal = x[i];
+    		}
+    		
+    		if(dist < low)
+    		{
+    			low = dist;
+    			lowVal = x[i];
+    		}
+    	}
+    	
+    	s = String.format("The furthest from the average is %.2f - The closest to the average is - %.2f", highVal, lowVal);
+    	return s;
+    }
   
 }
+
+
